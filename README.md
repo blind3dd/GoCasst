@@ -17,18 +17,20 @@ prerequisites:
 	(in Cass/main.go it's looking for Cluster name "usersmessages")
 
 
-EXAMPLE USAGE 
+EXAMPLE USAGE (under assumption basic auth is sent along):
 - hearbeat check
 - getting user's list from Cluster
 - Creating new one by http POST request
 - Getting users list once again
 
-$ go run *.go
-$ curl http://localhost:8088 -u user:pass
-$ curl http://localhost:8088/v1/users  -H"Authorization: Basic: dXNlcjpwYXNz"
-$ curl  -H"Content-Type: application/x-www-form-urlencoded" -H"Authorization: Basic: dXNlcjpwYXNz" \
-"http://localhost:8088/v1/users/new" -X POST -d'name="test"&lastname="test2"&email=test@mail.com&city=SanFrancisco&birthyear=1990'
-$ curl http://localhost:8088/v1/users  -H"Authorization: Basic: dXNlcjpwYXNz"
+Go with:
+
+	$ go run *.go
+	$ curl http://localhost:8088 -u user:pass
+	$ curl http://localhost:8088/v1/users  -H"Authorization: Basic: dXNlcjpwYXNz"
+	$ curl  -H"Content-Type: application/x-www-form-urlencoded" -H"Authorization: Basic: dXNlcjpwYXNz" \
+	"http://localhost:8088/v1/users/new" -X POST -d'name="test"&lastname="test2"&email=test@mail.com&city=SanFrancisco&birthyear=1990'
+	$ curl http://localhost:8088/v1/users  -H"Authorization: Basic: dXNlcjpwYXNz"
 
 
 TODO
