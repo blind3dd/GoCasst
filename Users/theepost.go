@@ -1,12 +1,11 @@
-package Users
+package users
 
 import (
+	"GoCasst/Auth"
+	"GoCasst/Cass"
 	"encoding/json"
 	"fmt"
 	"net/http"
-
-	"GoCasst/Auth"
-	"GoCasst/Cass"
 
 	"github.com/gocql/gocql"
 )

@@ -3,8 +3,8 @@ package main
 import (
 	"net/http"
 
-	"GoCasst/Messaging"
-	"GoCasst/Users"
+	"github.com/blind3dd/gocasst/messaging"
+	"github.com/blind3dd/gocasst/users"
 )
 
 type ResponseStatus struct {
@@ -29,39 +29,39 @@ var routes = Routes{
 		Heartbeat,
 	},
 	Route{
-		"Users.GetAllUsersRequest",
+		"users.GetAllUsersRequest",
 		"GET",
 		"/v1/users",
-		Users.GetAllUsersRequest,
+		users.GetAllUsersRequest,
 	},
 	Route{
-		"Messages.GetAllMessagesRequest",
+		"messages.GetAllMessagesRequest",
 		"GET",
 		"/v1/messages",
-		Messaging.GetAllMessagesRequest,
+		messaging.GetAllMessagesRequest,
 	},
 	Route{
-		"Users.GetOneUserRequest",
+		"users.GetOneUserRequest",
 		"GET",
 		"/v1/users/{users_uuid}",
-		Users.GetOneUserRequest,
+		users.GetOneUserRequest,
 	},
 	Route{
-		"Messages.GetOneMsgRequest",
+		"messages.GetOneMsgRequest",
 		"GET",
 		"/v1/messages/{message_uuid}",
-		Messaging.GetOneMsgRequest,
+		messaging.GetOneMsgRequest,
 	},
 	Route{
-		"Users.PostTheUser",
+		"users.PostTheUser",
 		"POST",
 		"/v1/users/new",
-		Users.PostTheUser,
+		users.PostTheUser,
 	},
 	Route{
-		"Messaging.PostTheMessage",
+		"messages.PostTheMessage",
 		"POST",
 		"/v1/messages/new",
-		Messaging.PostTheMessage,
+		messaging.PostTheMessage,
 	},
 }

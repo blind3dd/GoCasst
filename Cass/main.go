@@ -1,4 +1,4 @@
-package Cass
+package cass
 
 import (
 	"bufio"
@@ -10,6 +10,7 @@ import (
 	"github.com/gocql/gocql"
 )
 
+// Session is global
 var Session *gocql.Session
 var err error
 

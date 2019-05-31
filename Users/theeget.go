@@ -1,12 +1,12 @@
-package Users
+package users
 
 import (
+	"GoCasst/Cass"
 	"encoding/json"
 	"fmt"
 	"net/http"
 
-	"GoCasst/Auth"
-	"GoCasst/Cass"
+	"github.com/blind3dd/gocasst/auth"
 
 	"github.com/gocql/gocql"
 	"github.com/gorilla/mux"
@@ -39,7 +39,7 @@ func GetOneUserRequest(w http.ResponseWriter, r *http.Request) {
 				BirthYear: m["birthyear"].(int),
 			}
 		}
-		if !exists || !Auth.AuthCheck(w, r) {
+		if !exists || !auth.AuthCheck(w, r) {
 			json.NewEncoder(w).Encode(ResponseStatus{Status: "Unauthorized", Code: 401})
 			return
 		} else {
@@ -48,7 +48,7 @@ func GetOneUserRequest(w http.ResponseWriter, r *http.Request) {
 		}
 
 		if exists {
-			if Auth.AuthCheck(w, r) {
+			if auth.AuthCheck(w, r) {
 				json.NewEncoder(w).Encode(GetUser{User: user})
 				fmt.Println(Cass.LogTime()+", Getting user's details: ", user.ID)
 				//		return
@@ -79,7 +79,7 @@ func GetAllUsersRequest(w http.ResponseWriter, r *http.Request) {
 		})
 		m = map[string]interface{}{}
 	}
-	if Auth.AuthCheck(w, r) {
+	if auth.AuthCheck(w, r) {
 		fmt.Println(Cass.LogTime() + ", Getting users list ..")
 		json.NewEncoder(w).Encode(GetAllUsers{Users: listAll})
 	} else {

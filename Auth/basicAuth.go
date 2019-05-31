@@ -1,4 +1,4 @@
-package Auth
+package auth
 
 import (
 	"encoding/base64"
@@ -6,6 +6,7 @@ import (
 	"strings"
 )
 
+// AuthCheck writes true if authenticated or false otherwise
 func AuthCheck(w http.ResponseWriter, r *http.Request) bool {
 	str := strings.SplitN(r.Header.Get("Authorization"), " ", 2)
 	if len(str) != 2 {

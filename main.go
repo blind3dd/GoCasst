@@ -1,4 +1,3 @@
-// created by me
 package main
 
 import (
@@ -8,23 +7,24 @@ import (
 	"net/http"
 	"time"
 
-	"GoCasst/Auth"
-	"GoCasst/Cass"
+	"github.com/blind3dd/gocasst/auth"
+	"github.com/blind3dd/gocasst/cass"
 )
 
+// Heartbeat says hb ok if endpoint works
 func Heartbeat(w http.ResponseWriter, r *http.Request) {
-	if Auth.AuthCheck(w, r) {
+	if auth.AuthCheck(w, r) {
 		json.NewEncoder(w).Encode(ResponseStatus{Status: "OK", Code: 200})
-		fmt.Println(Cass.LogTime() + ", Heartbeat Received with Status 200")
+		fmt.Println(cass.LogTime() + ", Heartbeat Received with Status 200")
 		return
 	}
 	json.NewEncoder(w).Encode(ResponseStatus{Status: "Unauthorized", Code: 401})
-	fmt.Println(Cass.LogTime() + ", Heartbeat request - Unauthorized")
+	fmt.Println(cass.LogTime() + ", Heartbeat request - Unauthorized")
 }
 
 func main() {
 	//var handler http.HandlerFunc
-	CassSession := Cass.Session
+	CassSession := cass.Session
 	defer CassSession.Close()
 	// router endpoints and handlers (endpoints.go)
 	router := NewRouter()
